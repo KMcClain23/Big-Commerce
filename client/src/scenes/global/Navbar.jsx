@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
 
-const Navbar = () => {
+function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
@@ -29,18 +29,18 @@ const Navbar = () => {
       zIndex="1"
     >
       <Box
-        width="80"
+        width="80%"
         margin="auto"
         display="flex"
         justifyContent="space-between"
-        alighnItems="center"
+        alignItems="center"
       >
         <Box
           onClick={() => navigate("/")}
           sx={{ "&:hover": { cursor: "pointer" } }}
           color={shades.secondary[500]}
         >
-          YOUCOMMERCE
+          Big Commerce
         </Box>
         <Box
           display="flex"
@@ -54,25 +54,26 @@ const Navbar = () => {
           <IconButton sx={{ color: "black" }}>
             <PersonOutline />
           </IconButton>
-
           <Badge
-          badgeContent={cart.length}
-          color="secondary"
-          invisible={cart.length === 0}
-          sx={{
-            "& .MuiBadge-badge": {
+            badgeContent={cart.length}
+            color="secondary"
+            invisible={cart.length === 0}
+            sx={{
+              "& .MuiBadge-badge": {
                 right: 5,
                 top: 5,
                 padding: "0 4px",
                 height: "14px",
                 minWidth: "13px",
-            }
-          }}>
-          <IconButton
-          onClick={() => dispatch(setIsCartOpen({}))}
-          sx={{ color: "black" }}>
-            <ShoppingBagOutlined />
-          </IconButton>
+              },
+            }}
+          >
+            <IconButton
+              onClick={() => dispatch(setIsCartOpen({}))}
+              sx={{ color: "black" }}
+            >
+              <ShoppingBagOutlined />
+            </IconButton>
           </Badge>
           <IconButton sx={{ color: "black" }}>
             <MenuOutlined />
@@ -81,6 +82,6 @@ const Navbar = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default Navbar;
